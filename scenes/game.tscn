@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyktmfmo5cbhx"]
+
+[ext_resource type="Script" path="res://scripts/player/PlayerMovement.cs" id="1_87qj3"]
+[ext_resource type="Script" path="res://scripts/player/PlayerRoot.cs" id="1_upan1"]
+[ext_resource type="Script" path="res://scripts/player/PlayerCamera.cs" id="2_kipwb"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ggled"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_urk64"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_da426"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gx2ry"]
+
+[node name="Game" type="Node3D"]
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ggled")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_urk64")
+skeleton = NodePath("../..")
+
+[node name="PlayerRoot" type="Node" parent="." node_paths=PackedStringArray("body", "camera")]
+script = ExtResource("1_upan1")
+body = NodePath("PlayerBody")
+camera = NodePath("PlayerBody/Camera")
+
+[node name="PlayerMovement" type="Node" parent="PlayerRoot"]
+script = ExtResource("1_87qj3")
+walkSpeed = 5.0
+
+[node name="PlayerCamera" type="Node" parent="PlayerRoot"]
+script = ExtResource("2_kipwb")
+
+[node name="PlayerBody" type="CharacterBody3D" parent="PlayerRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="Camera" type="Camera3D" parent="PlayerRoot/PlayerBody"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 0)
+
+[node name="Hitbox" type="CollisionShape3D" parent="PlayerRoot/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_da426")
+
+[node name="Renderer" type="MeshInstance3D" parent="PlayerRoot/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_gx2ry")
