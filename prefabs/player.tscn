@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj3cn0p847bqc"]
+
+[ext_resource type="Script" path="res://scripts/player/PlayerRoot.cs" id="1_uidnh"]
+[ext_resource type="Script" path="res://scripts/player/PlayerMovement.cs" id="2_23kbe"]
+[ext_resource type="Script" path="res://scripts/player/PlayerCamera.cs" id="3_dv3oq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_da426"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gx2ry"]
+
+[node name="PlayerRoot" type="Node" node_paths=PackedStringArray("body", "camera")]
+script = ExtResource("1_uidnh")
+body = NodePath("PlayerBody")
+camera = NodePath("PlayerBody/Camera")
+
+[node name="PlayerMovement" type="Node" parent="."]
+script = ExtResource("2_23kbe")
+jumpForce = 6.0
+gravityForce = -15.0
+
+[node name="PlayerCamera" type="Node" parent="."]
+script = ExtResource("3_dv3oq")
+verticalSensitivity = 1.5
+horizontalSensitivity = 1.5
+
+[node name="PlayerBody" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+floor_constant_speed = true
+
+[node name="Camera" type="Camera3D" parent="PlayerBody"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 0)
+current = true
+
+[node name="Hitbox" type="CollisionShape3D" parent="PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_da426")
+
+[node name="Renderer" type="MeshInstance3D" parent="PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+cast_shadow = 3
+mesh = SubResource("CapsuleMesh_gx2ry")

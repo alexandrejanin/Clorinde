@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://djp1vv7vwr7ii"]
+
+[ext_resource type="Texture2D" uid="uid://dn270ydb0d7ip" path="res://graphics/textures/road.png" id="1_y7a6t"]
+[ext_resource type="PackedScene" uid="uid://c7sqaug5powo" path="res://prefabs/architecture/house.tscn" id="2_7l73u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvagv"]
+size = Vector3(10, 1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6wtl"]
+albedo_texture = ExtResource("1_y7a6t")
+texture_filter = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_autyy"]
+size = Vector3(10, 1, 5)
+
+[node name="Streets" type="Node3D"]
+
+[node name="Street" type="Node3D" parent="."]
+
+[node name="Node3D" type="StaticBody3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Street/Node3D"]
+shape = SubResource("BoxShape3D_wvagv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Street/Node3D"]
+material_override = SubResource("StandardMaterial3D_b6wtl")
+mesh = SubResource("BoxMesh_autyy")
+skeleton = NodePath("../../../..")
+
+[node name="Node3D2" type="StaticBody3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, -2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Street/Node3D2"]
+shape = SubResource("BoxShape3D_wvagv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Street/Node3D2"]
+material_override = SubResource("StandardMaterial3D_b6wtl")
+mesh = SubResource("BoxMesh_autyy")
+skeleton = NodePath("../..")
+
+[node name="House" parent="Street" instance=ExtResource("2_7l73u")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 3.14959, 7.82234)
+
+[node name="House2" parent="Street" instance=ExtResource("2_7l73u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.14959, -7.91563)
+
+[node name="Street2" type="Node3D" parent="."]
+transform = Transform3D(0.982749, -0.184946, 0, 0.184946, 0.982749, 0, 0, 0, 1, 10, 0.901081, 0)
+
+[node name="Node3D" type="StaticBody3D" parent="Street2"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Street2/Node3D"]
+shape = SubResource("BoxShape3D_wvagv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Street2/Node3D"]
+material_override = SubResource("StandardMaterial3D_b6wtl")
+mesh = SubResource("BoxMesh_autyy")
+skeleton = NodePath("../../../..")
+
+[node name="Node3D2" type="StaticBody3D" parent="Street2"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, -2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Street2/Node3D2"]
+shape = SubResource("BoxShape3D_wvagv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Street2/Node3D2"]
+material_override = SubResource("StandardMaterial3D_b6wtl")
+mesh = SubResource("BoxMesh_autyy")
+skeleton = NodePath("../..")

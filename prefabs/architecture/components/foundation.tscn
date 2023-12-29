@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://jgltwro6b61p"]
+
+[ext_resource type="PackedScene" uid="uid://ddjlticfawwa3" path="res://graphics/models/foundation.blend" id="1_l3e3a"]
+[ext_resource type="Texture2D" uid="uid://cb2dw3l0d83hc" path="res://graphics/textures/stone.png" id="2_ltn7i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k1o6"]
+albedo_texture = ExtResource("2_ltn7i")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vntdy"]
+data = PackedVector3Array(1.5, 0.5, -0.375, -1.5, 0.5, 0.375, -1.5, 0.5, -0.375, 1.5, 0.5, -0.375, 1.5, 0.5, 0.375, -1.5, 0.5, 0.375, 1.5, 0, 0.5, -1.5, 0.5, 0.375, 1.5, 0.5, 0.375, 1.5, 0, 0.5, -1.5, 0, 0.5, -1.5, 0.5, 0.375, -1.5, 0, 0.5, -1.5, 0.5, -0.375, -1.5, 0.5, 0.375, -1.5, 0, 0.5, -1.5, 0, -0.5, -1.5, 0.5, -0.375, -1.5, 0, -0.5, 1.5, 0, 0.5, 1.5, 0, -0.5, -1.5, 0, -0.5, -1.5, 0, 0.5, 1.5, 0, 0.5, 1.5, 0, -0.5, 1.5, 0.5, 0.375, 1.5, 0.5, -0.375, 1.5, 0, -0.5, 1.5, 0, 0.5, 1.5, 0.5, 0.375, -1.5, 0, -0.5, 1.5, 0.5, -0.375, -1.5, 0.5, -0.375, -1.5, 0, -0.5, 1.5, 0, -0.5, 1.5, 0.5, -0.375)
+
+[node name="foundation" instance=ExtResource("1_l3e3a")]
+
+[node name="Cube" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_5k1o6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_vntdy")
