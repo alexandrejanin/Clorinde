@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bj3cn0p847bqc" path="res://prefabs/player.tscn" id="1_ydc8y"]
 [ext_resource type="PackedScene" uid="uid://uqit6uxabi0r" path="res://prefabs/architecture/streets.tscn" id="2_38670"]
-[ext_resource type="PackedScene" uid="uid://br7a5toejcye" path="res://scenes/tavern.tscn" id="4_4o4h2"]
+[ext_resource type="PackedScene" uid="uid://br7a5toejcye" path="res://prefabs/architecture/tavern.tscn" id="4_4o4h2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ed4k0"]
 
